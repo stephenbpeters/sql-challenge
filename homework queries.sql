@@ -19,17 +19,35 @@ where
 
 -- gives us dept number, employee no, and dept name
 
-create table dept_of_employee as
+create table dept_of_mgr as
 select dept_manager.dept_no, dept_manager.emp_no, joinme.dept_name
 	from dept_manager
 	join departments as joinme
 	on dept_manager.dept_no = joinme.dept_no;
-select * from dept_of_employee
+select * from dept_of_mgr;
 
 --- and now join our department info with our employee info
 
-select dept_of_employee.dept_no, dept_of_employee.dept_name, 
-	dept_of_employee.emp_no, joinme.first_name, joinme.last_name
-	from dept_of_employee
+select dept_of_mgr.dept_no, dept_of_mgr.dept_name, 
+	dept_of_mgr.emp_no, joinme.first_name, joinme.last_name
+	from dept_of_mgr
 	join employee as joinme
-	on dept_of_employee.emp_no = joinme.emp_no
+	on dept_of_mgr.emp_no = joinme.emp_no
+	
+-- 4. List the department of each employee with the following information: 
+--	employee number, last name, first name, and department name.
+-- first connect employee to dept no
+create table dept_of_employee as
+select employee.emp_no, employee.last_name, employee.first_name, joinme.dept_no 
+	from employee
+	join dept_emp as joinme
+	on employee.emp_no = joinme.emp_no;
+select * from dept_of_employee;
+-- now connect dept no to dept name.
+select dept_of_employee.emp_no, dept_of_employee.last_name, dept_of_employee.first_name,
+	joinme.dept_name
+	from dept_of_employee
+	join departments as joinme
+	on dept_of_employee.dept_no = dept_of_employee.dept_no;
+	
+	
