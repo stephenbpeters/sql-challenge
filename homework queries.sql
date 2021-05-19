@@ -17,15 +17,19 @@ where
 -- 3. List the manager of each department with the following information: department number, 
 -- department name, the manager's employee number, last name, first name.
 
--- works!
 -- gives us dept number, employee no, and dept name
+
+create table dept_of_employee as
 select dept_manager.dept_no, dept_manager.emp_no, joinme.dept_name
 	from dept_manager
 	join departments as joinme
 	on dept_manager.dept_no = joinme.dept_no;
--- also works!
--- gives us employee no, first name, last name and dept no
-select employee.emp_no, employee.first_name, employee.last_name, joinme2.dept_no
-	from employee
-	join dept_manager as joinme2
-	on employee.emp_no = joinme2.emp_no;
+select * from dept_of_employee
+
+--- and now join our department info with our employee info
+
+select dept_of_employee.dept_no, dept_of_employee.dept_name, 
+	dept_of_employee.emp_no, joinme.first_name, joinme.last_name
+	from dept_of_employee
+	join employee as joinme
+	on dept_of_employee.emp_no = joinme.emp_no
