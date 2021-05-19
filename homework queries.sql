@@ -50,4 +50,8 @@ select dept_of_employee.emp_no, dept_of_employee.last_name, dept_of_employee.fir
 	join departments as joinme
 	on dept_of_employee.dept_no = dept_of_employee.dept_no;
 	
-	
+-- 5. List first name, last name, and sex for employees whose first name is "Hercules"
+-- and last names begin with "B."	
+
+select first_name, last_name, sex from employee
+	where first_name = 'Hercules' and last_name like 'B%';
