@@ -71,3 +71,46 @@ select sales_dept.emp_no, sales_dept.last_name, sales_dept.first_name,
 	from sales_dept
 	join departments as joinme
 	on sales_dept.dept_no = joinme.dept_no;
+	
+-- 7. List all employees in the Sales and Development departments, including their 
+-- employee number, last name, first name, and department name.	
+
+-- get employees from those two departments.	
+create table sales_and_dev_depts as
+	select * from dept_of_employee
+	where dept_no = 'd007' or dept_no = 'd005';
+select * from sales_and_dev_depts;
+
+-- now connect dept no to dept name.
+select sales_and_dev_depts.emp_no, sales_and_dev_depts.last_name, sales_and_dev_depts.first_name,
+	joinme.dept_name
+	from sales_and_dev_depts
+	join departments as joinme
+	on sales_and_dev_depts.dept_no = joinme.dept_no;
+	
+-- 8. In descending order, list the frequency count of employee last names, 
+-- i.e., how many employees share each last name.	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
