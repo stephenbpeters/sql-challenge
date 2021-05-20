@@ -91,7 +91,10 @@ select sales_and_dev_depts.emp_no, sales_and_dev_depts.last_name, sales_and_dev_
 -- 8. In descending order, list the frequency count of employee last names, 
 -- i.e., how many employees share each last name.	
 	
-	
+select last_name, count(last_name) as names
+	from employee
+	group by last_name
+	order by names desc;
 	
 	
 	
