@@ -96,6 +96,23 @@ select last_name, count(last_name) as names
 	group by last_name
 	order by names desc;
 	
+-- bonus section: get average salary by title
+	
+-- bonus section: get average salary by title
+select emp_title from employee
+select title from titles
+-- works!
+select employee.emp_title, joinme.title 
+	from employee
+	join titles as joinme
+	on employee.emp_title = joinme.title_id;
+-- add salary -- works!
+select employee.emp_title, joinme.title, joinme2.salary 
+	from employee
+	join titles as joinme
+	on employee.emp_title = joinme.title_id
+	join salaries as joinme2
+	on employee.emp_no = joinme2.emp_no;	
 	
 	
 	
