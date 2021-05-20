@@ -48,10 +48,26 @@ select dept_of_employee.emp_no, dept_of_employee.last_name, dept_of_employee.fir
 	joinme.dept_name
 	from dept_of_employee
 	join departments as joinme
-	on dept_of_employee.dept_no = dept_of_employee.dept_no;
+	on dept_of_employee.dept_no = joinme.dept_no;
 	
 -- 5. List first name, last name, and sex for employees whose first name is "Hercules"
 -- and last names begin with "B."	
 
 select first_name, last_name, sex from employee
 	where first_name = 'Hercules' and last_name like 'B%';
+	
+-- 6. List all employees in the Sales department, including their employee number,
+--    last name, first name, and department name.	
+-- this will give us all the employees in the sales department, which is dep_no 'd007'
+create table sales_dept as
+	select * from dept_of_employee
+	where dept_no = 'd007';
+select * from sales_dept;
+
+-- By definition, we already know the department of the employees in the sales department
+-- but since it's been requested, here you go:
+select sales_dept.emp_no, sales_dept.last_name, sales_dept.first_name,
+	joinme.dept_name
+	from sales_dept
+	join departments as joinme
+	on sales_dept.dept_no = joinme.dept_no;
