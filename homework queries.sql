@@ -1,5 +1,6 @@
--- SQL home by Stephen Peters stephen.peters@gmail.com
+-- SQL homework by Stephen Peters stephen.peters@gmail.com
 -- May 2021 Data Analytics Bootcamp
+-- queries...
 
 -- 1. List the following details of each employee: employee number, last name, 
 -- first name, sex, and salary.
@@ -11,8 +12,8 @@ JOIN Salaries AS joinme
 -- 2. List first name, last name, and hire date for employees who were hired in 1986.
 select first_name, last_name, hire_date 
 	from Employee
-where 
-(date_part('year', hire_date) = 1986)
+	where 
+(date_part('year', hire_date) = 1986);
 
 -- 3. List the manager of each department with the following information: department number, 
 -- department name, the manager's employee number, last name, first name.
@@ -32,7 +33,7 @@ select dept_of_mgr.dept_no, dept_of_mgr.dept_name,
 	dept_of_mgr.emp_no, joinme.first_name, joinme.last_name
 	from dept_of_mgr
 	join employee as joinme
-	on dept_of_mgr.emp_no = joinme.emp_no
+	on dept_of_mgr.emp_no = joinme.emp_no;
 	
 -- 4. List the department of each employee with the following information: 
 --	employee number, last name, first name, and department name.
@@ -98,21 +99,17 @@ select last_name, count(last_name) as names
 	
 -- bonus section: get average salary by title
 	
--- bonus section: get average salary by title
-select emp_title from employee
-select title from titles
--- works!
-select employee.emp_title, joinme.title 
-	from employee
-	join titles as joinme
-	on employee.emp_title = joinme.title_id;
--- add salary -- works!
-select employee.emp_title, joinme.title, joinme2.salary 
+create table title_salary as
+select employee.emp_title, joinme.title, joinme2.salary
 	from employee
 	join titles as joinme
 	on employee.emp_title = joinme.title_id
 	join salaries as joinme2
-	on employee.emp_no = joinme2.emp_no;	
+	on employee.emp_no = joinme2.emp_no;
+select * from title_salary;	
+-- get average salary by title
+select title_salary.title, avg(title_salary.salary)::numeric(10,2) from title_salary
+	group by title_salary.title;
 	
 	
 	

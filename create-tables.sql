@@ -1,11 +1,15 @@
-drop table Titles;
+-- SQL homework by Stephen Peters stephen.peters@gmail.com
+-- May 2021 Data Analytics Bootcamp
+-- creating tables...
+
+drop table if exists Titles;
 CREATE TABLE Titles (
     title_id varchar(10) primary key NOT NULL,
     title varchar(30) NOT NULL
 );
 select * from Titles;
 
-drop table Employee;
+drop table if exists Employee;
 CREATE TABLE Employee (
     emp_no int primary key,
 	emp_title varchar(10) not null,
@@ -18,7 +22,7 @@ CREATE TABLE Employee (
 );
 select * from Employee;	
 
-drop table salaries;
+drop table if exists salaries;
 CREATE TABLE Salaries (
     emp_no int NOT NULL primary key,
 	foreign key (emp_no) references Employee(emp_no),
@@ -26,23 +30,23 @@ CREATE TABLE Salaries (
 );
 select * from Salaries;
 
-drop table Departments;
+drop table if exists Departments;
 create table Departments (
 	dept_no varchar(10) not null primary key,
 	dept_name varchar(30) not null
 );
 select * from Departments;
 
-drop table Dept_manager;
+drop table if exists Dept_manager;
 create table Dept_manager (
 	dept_no varchar(10) not null,
-	emp_no int not null,
+	emp_no int not null primary key,
 	foreign key (emp_no) references Employee(emp_no),
 	foreign key (dept_no) references Departments(dept_no)
 );
 select * from Dept_manager;
 
-drop table Dept_emp;
+drop table if exists Dept_emp;
 create table Dept_emp (
 	emp_no int not null,
 	dept_no varchar(10) not null,
@@ -50,4 +54,3 @@ create table Dept_emp (
 	foreign key (dept_no) references Departments(dept_no)
 );
 select * from Dept_emp;	
-
