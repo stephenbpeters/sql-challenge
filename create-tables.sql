@@ -51,6 +51,7 @@ create table Dept_emp (
 	emp_no int not null,
 	dept_no varchar(10) not null,
 	foreign key (emp_no) references Employee(emp_no),
-	foreign key (dept_no) references Departments(dept_no)
+	foreign key (dept_no) references Departments(dept_no),
+	primary key (emp_no, dept_no)
 );
 select * from Dept_emp;	
